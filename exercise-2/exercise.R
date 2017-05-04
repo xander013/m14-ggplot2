@@ -2,27 +2,31 @@
 
 # Install and load `ggplot2`
 # install.packages("ggplot2") # if needed
-
+library(ggplot2)
 
 # For this exercise you will again be working with the `diamonds` data set.
 # Use `?diamonds` to review details about this data set
-
+?diamonds
 
 
 ## Statistical Transformations
 
 # Draw a bar chart of the diamonds data, organized by cut
 # The height of each bar is based on the "count" (number) of diamonds with that cut
-
+ggplot(data = diamonds) +
+  geom_bar(aes(x = cut))
 
 # Use the `stat_count` to apply the statistical transformation "count" to the diamonds
 # by cut. You do not need a separate geometry layer!
-
+ggplot(data = diamonds) +
+  stat_count(aes(x = cut))
 
 # Use the `stat_summary` function to draw a chart with a summary layer.
 # Map the x-position to diamond `cut`, and the y-position to diamond `depth`
 # Bonus: use `min` as the function ymin, `max` as the function ymax, and `median` as the function y
-
+ggplot(data = diamonds) +
+  stat_summary(aes(x = cut, y = depth), 
+               fun.ymax = max, fun.ymin = min, fun.y = median)
 
 
 ## Position Adjustments
